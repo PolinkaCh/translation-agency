@@ -1,0 +1,59 @@
+{% extends "index.html" %}
+{% load static %}
+{% block title %}
+My orders
+{% endblock %}
+{% block content %}
+<div class="my_orders">
+<h1>Мои заказы</h1>
+    <form action="{% url 'myorders' %}" method="get">
+        <h5>Заказы по месяцам</h5>
+    {% for order in months %}
+    <li style="list-style-type:none">
+        <input name="month" value="{{ order.deadline }}" type="checkbox" class="checked">
+        <span>{{ order.deadline|date:"M" }}</span>
+    </li>
+    {% endfor %}
+        <button  class="btn-register btn" style="margin-bottom: 20px " type="submit">Найти</button>
+    </form>
+{% if order%}
+<table>
+ <thead>
+  <tr>
+      <th>Язык</th>
+      <th>Тип перевода</th>
+      <th>Название</th>
+      <th>Серия</th>
+      <th>Длительность</th>
+      <th>Ставка</th>
+      <th>Дата получения</th>
+      <th>Дата сдачи</th>
+      <th>Стоимость</th>
+  </tr>
+ </thead>
+<tfoot>
+  <tr>
+    <td colspan="8" style="text-align:right">ИТОГО:</td><td>{{sum}}</td>
+  </tr>
+</tfoot>
+<tbody>
+{% for el in order%}
+  <tr id="table">
+      <td>{{ el.language }}</td>
+      <td>{{ el.translation_type }}</td>
+      <td>{{ el.title }}</td>
+      <td>{{ el.episode }}</td>
+      <td>{{ el.duration }}</td>
+      <td>{{ el.rate }}</td>
+      <td>{{ el.receipt_date |date:"d M Y"  }}</td>
+      <td>{{ el.deadline |date:"d M Y"  }}</td>
+      <td>{{ el.get_price }}</td>
+  </tr>
+{% endfor %}
+</tbody>
+</table>
+{% else %}
+<p>Нет заказов в этом месяце</p>
+{% endif%}
+</div>
+{% endblock %}

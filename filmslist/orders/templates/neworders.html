@@ -1,0 +1,34 @@
+{% extends "index.html" %}
+{% load static %}
+{% block title %}
+New orders
+{% endblock %}
+{% block content %}
+<div class="content-newOrders">
+<h1>Новые заказы</h1>
+{% for el in newOrder %}
+<div class="post">
+    <p>#{{ el.translation_type}} #{{ el.language}}</p>
+    <p>Перевод {{ el.title }}
+        {% if el.episode %}
+        {{ el.episode }} серия
+        {% endif %}<br>
+        Длительность - {{ el.duration }}.<br>
+        Ставка - {{ el.rate }}<br>
+        Срок сдачи - {{ el.deadline| date:"d M Y" }}
+    </p>
+
+    <button class="btn-register btn order-button"> Принять</button>
+
+</div>
+{% endfor %}
+    {% if page.has_previous %}
+    <button><a href="?page={{page.previous_page_number}}">Назад</a></button>
+    {% endif %}
+    {% if page.has_next %}
+    <button><a href="?page={{page.next_page_number}}">Вперёд</a></button>
+    {% endif %}
+</div>
+<script src="{% static 'js/123.js' %}"
+></script>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> {% block title %}{{ title }}</title>{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+</head>
+<body>
+<aside>
+	{% block sidebar %}
+	{{ sidebar }}
+	{% if messages %}
+        	{% for message in messages %}
+          	<div class="alert alert-{{ message.tags }}">
+            	{{ message }}
+          	</div>
+        	{% endfor %}
+	{% endif %}
+	{% endblock %}
+</aside>
+<main>
+	{% block content %}
+	{% endblock %}
+</main>
+
+</body>
+</html>

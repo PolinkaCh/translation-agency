@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+RuFilms
+{% endblock %}
+{% block sidebar %}
+{% if user.is_authenticated %}
+<img src="{% static 'img/logo-r.png' %}">
+<span class="logo">RuFilms</span>
+<ul class="sidebar-nav">
+          <li><a href="{% url 'profile' %}">Профиль</a></li>
+          <li><a href="{% url 'myorders' %}">Мои заказы</a></li>
+          <li><a href="{% url 'neworders' %}">Новые заказы</a></li>
+</ul>
+{% endif %}
+{% endblock %}
+{% block content %}
+<div class="profile">
+    <div class="background-img">
+       <img src="{% static 'img/pexels-photo-5474293.jpeg' %}">
+    </div>
+    <div class="background-img-overlay"></div>
+    <div class="main-content">
+    <h1> Добро пожаловать в RuFilms!</h1>
+    {% if user.is_authenticated %}
+        <p> {{ user }}, вы вошли в систему.</p>
+        <button class="btn"><a href="{% url 'logout' %}">Выход</a></button>
+      {% else %}
+
+        <p>Вы вышли из аккаунта.</p>
+        <button class="btn"><a href="{% url 'login' %}">Вход</a></button>
+
+      {% endif %}
+    </div>
+</div>
+{% endblock %}
