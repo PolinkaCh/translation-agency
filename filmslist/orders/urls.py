@@ -8,8 +8,8 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('myorders/', views.myorders, name='myorders'),
     path('neworders/', views.neworders, name='neworders'),
-    path('filter/', views.myorders, name='filter'),
-    path('pagi/', views.neworders, name='pagi'),
+    path('filter/', views.myorders, name='filter')
+
 
 
 

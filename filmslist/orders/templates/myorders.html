@@ -5,9 +5,9 @@ My orders
 {% endblock %}
 {% block content %}
 <div class="my_orders">
-<h1>Мои заказы</h1>
-    <form action="{% url 'myorders' %}" method="get">
-        <h5>Заказы по месяцам</h5>
+<h1>Мои работы</h1>
+    <form action="{% url 'filter' %}" method="get">
+        <h5>Работы по месяцам</h5>
     {% for order in months %}
     <li style="list-style-type:none">
         <input name="month" value="{{ order.deadline }}" type="checkbox" class="checked">

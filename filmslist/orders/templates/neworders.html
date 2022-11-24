@@ -22,12 +22,6 @@ New orders
 
 </div>
 {% endfor %}
-    {% if page.has_previous %}
-    <button><a href="?page={{page.previous_page_number}}">Назад</a></button>
-    {% endif %}
-    {% if page.has_next %}
-    <button><a href="?page={{page.next_page_number}}">Вперёд</a></button>
-    {% endif %}
 </div>
 <script src="{% static 'js/123.js' %}"
 ></script>

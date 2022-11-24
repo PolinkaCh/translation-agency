@@ -1,11 +1,13 @@
 from django.db import models
 from django.utils import timezone
+from users.models import Profile
 
 
 
 # Create your models here.
 
 class Translators(models.Model):
+    user_name = models.CharField(max_length=20, default="Karen")
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     email = models.EmailField(null=True, blank=True, help_text="Enter your e-mail")
@@ -14,7 +16,7 @@ class Translators(models.Model):
     admission = models.ForeignKey('TranslationTypes', help_text="Enter your types of admission", on_delete=models.SET_NULL, null=True, blank=True,)
 
     def __str__(self):
-        return self.last_name + '' + self.first_name
+        return self.user_name
 
 
 class TranslationTypes(models.Model):
@@ -74,6 +76,6 @@ class Post(models.Model):
     rate = models.IntegerField(null=True, blank=True, )
     deadline = models.DateField(null=True, blank=True, )
 
-
     def __str__(self):
         return self.title
+
