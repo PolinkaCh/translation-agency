@@ -37,7 +37,7 @@ My orders
   </tr>
 </tfoot>
 <tbody>
-{% for el in order%}
+{% for el in queryset %}
   <tr id="table">
       <td>{{ el.language }}</td>
       <td>{{ el.translation_type }}</td>
