@@ -2,11 +2,7 @@ from django.db import models
 from django.utils import timezone
 
 
-
-
-# Create your models here.
-
-class Translators(models.Model):
+class Translators(models.Model):       #класс для бд с работниками
     user_name = models.CharField(max_length=20, default="Karen")
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
@@ -19,28 +15,28 @@ class Translators(models.Model):
         return self.user_name
 
 
-class TranslationTypes(models.Model):
+class TranslationTypes(models.Model):      #класс для типа перевода
     type = models.CharField(max_length=20, help_text="subtitles, voiceover, dubbing")
 
     def __str__(self):
         return self.type
 
 
-class MovieType(models.Model):
+class MovieType(models.Model):      #класс для типа контента
     type = models.CharField(max_length=20, help_text="Film or serial")
 
     def __str__(self):
         return self.type
 
 
-class LanguagePairs(models.Model):
+class LanguagePairs(models.Model):    #класс для языковых пар
     name = models.CharField(max_length=200, help_text="ru-en, en-ru, de-en etc.")
 
     def __str__(self):
         return self.name
 
 
-class Order(models.Model):
+class Order(models.Model):     #класс для выполненных заказов
     language = models.ForeignKey('LanguagePairs', on_delete=models.SET_NULL, null=True, blank=True, help_text="ru-en, en-ru, de-en etc.")
     translation_type = models.ForeignKey('TranslationTypes', on_delete=models.SET_NULL, null=True, blank=True)
     movie_type = models.ForeignKey('MovieType', on_delete=models.SET_NULL, null=True, blank=True)
@@ -64,7 +60,7 @@ class Order(models.Model):
         return self.duration * self.rate
 
 
-class Post(models.Model):
+class Post(models.Model):   #класс для постов о новой работе
     title = models.CharField(max_length=50, null=True, blank=True, help_text="name of movie.")
     date_posted = models.DateTimeField(default=timezone.now)
     language = models.ForeignKey('LanguagePairs', on_delete=models.SET_NULL, null=True, blank=True,
@@ -78,4 +74,3 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-
